@@ -117,11 +117,8 @@ int main(int argc, char *argv[])
 		ethernet = (struct sniff_ethernet*)(packet);
 		ip = (struct sniff_ip*)(packet + SIZE_ETHERNET);
 		size_ip = IP_HL(ip)*4;
-/*		if (size_ip < 20) {
-			printf("   * Invalid IP header length: %u bytes\n", size_ip);
-			return 0 ;
-		}*/
 		tcp = (struct sniff_tcp*)(packet + SIZE_ETHERNET + size_ip);
+
 		if(pcap_offline_filter(&fcode, header, packet) != 0)
 		{
 			printf("Packet # %i\n", ++packetCount);
